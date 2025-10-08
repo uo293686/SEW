@@ -20,7 +20,10 @@ audio{ /*001*/
 
 @media (min-width: 320px) and (max-width: 799px){
     header{ /*001*/
+        display:flex;
+        flex-direction:column;
         order:1;
+        width: 100%;
     }
 }
 
