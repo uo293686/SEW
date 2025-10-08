@@ -28,6 +28,9 @@ audio{ /*001*/
         gap:2rem;
         flex-direction:column;
     }
+    main p:first-child{ /*012*/
+        display: none;
+    }
 }
 
 @media (min-width: 800px){
