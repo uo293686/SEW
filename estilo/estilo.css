@@ -30,7 +30,6 @@ nav a{ /*002*/
 
 nav a.active{ /*012*/
     color: #e2f022;
-    background-color: #3559d1;
     /* hereda background-color:#001c77 de body header{} */
 }
 
