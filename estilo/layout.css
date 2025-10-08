@@ -22,8 +22,11 @@ audio{ /*001*/
     header{ /*001*/
         display:flex;
         flex-direction:column;
-        order:1;
-        width: 100%;
+    }
+    header nav{ /*002*/
+        display:flex;
+        gap:2rem;
+        flex-direction:column;
     }
 }
 
