@@ -1,0 +1,25 @@
+/* Sergio Blanco García - UO293686 */
+/* Estilos del layout del proyecto MotoGP - Desktop */
+header{
+    display:flex;
+    justify-content: space-around;
+    flex-shrink: 3;
+    align-items: center;
+}
+header nav{
+    display:flex;
+    gap:2rem;
+}
+Video {
+    width:80%;
+    height:auto;
+}
+audio{
+    width:80%;
+}
+
+@media (min-width: 320px) and (max-width: 799px){
+    header{
+        order:1;
+    }
+}
