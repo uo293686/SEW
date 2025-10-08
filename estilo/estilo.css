@@ -1,0 +1,38 @@
+/* Sergio Blanco García - UO293686 */
+/* Estilos generales del proyecto MotoGP - Desktop */
+
+body{   /*001*/
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; 
+    font-size: 1.2rem; 
+    background-color: #dff5ff;
+    color:black;
+}
+body header{ /*002*/
+    background-color:#001c77;
+    color:#ffffff;
+}
+h1{ /*001*/
+    font-size: 3rem;
+    
+}
+h1 a{/*002*/
+    /*Hereda font-size de h1{}*/
+    color: #ffffff;
+    background-color:#001c77;
+    text-decoration-line: none;
+}
+nav a{ /*002*/
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-decoration-line: none;
+    /* hereda background-color:#001c77 de body header{} */
+}
+
+nav a.active{ /*012*/
+    color: #e2f022;
+    /* hereda background-color:#001c77 de body header{} */
+}
+
+main p:first-child{ /*012*/
+    font-size: 0.8rem;
+}
