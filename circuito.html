@@ -6,12 +6,17 @@
     <meta charset="UTF-8" />
     <meta name = "author" content = "Sergio Blanco García"/>
     <meta name = "descripción"  content = "Información del circuito de MotoGP-Desktop"/>
-    <meta name = "keywords" content = "aquí cada documento debe tener la lista de palabras clave del mismo separada por comas"/>
+    <meta name = "keywords" content = "circuito, Autodromo Internazionale del Mugello"/>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0"/>
     <title>MotoGP-Circuito</title>
 	<link rel="stylesheet" type="text/css" href = "estilo/estilo.css"/>
     <link rel="stylesheet" type="text/css" href = "estilo/layout.css"/>
     <link rel="icon" href="multimedia/icon.ico"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+    <script src = "js/circuito.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.17.0/mapbox-gl.js"></script>
 </head>
 
 <body>
@@ -23,17 +28,71 @@
         <a href = "piloto.html">Piloto</a>
         <a href = "circuito.html" class = "active">Circuito</a>
         <a href = "meteorologia.html">Meteorología</a>
-        <a href = "clasificaciones.html">Clasificaciones</a>
+        <a href = "clasificaciones.php">Clasificaciones</a>
         <a href = "juegos.html">Juegos</a>
         <a href = "ayuda.html">Ayuda</a>
     </nav>
     
 </header>
+<p>Estás en: <a href="index.html">MotoGP Desktop</a> >> <strong>Circuito</strong></p>
 <main>
-    <p>Estás en: <a href="index.html">MotoGP Desktop</a> >> <strong>Circuito</strong></p>
 
     <h2>Circuito de MotoGP-Desktop</h2>
-    <p>En desarrollo</p>
+    <h3>Info del circuito</h3>
+    <input type="file" accept=".html">
+
+    
+    <h3>Altimetría del circuito:</h3>
+    <input type="file" accept=".svg"/>
+    <section></section>
+
+    <h3>Mapa dinámico del circuito</h3>
+    <input type="file" accept=".xml,.kml">
+    <button>Insertar circuito en mapa</button>
+    <div></div>
+
+
+
+    <script>
+        const inputs = document.querySelectorAll("input[type='file']");
+        const inputFileHtml = inputs[0];
+        const inputFileSVG = inputs[1];
+        const inputFileKML = inputs[2];
+
+        const contenedor = document.querySelector("section");
+        const boton = document.querySelector("button");
+
+        const circuito = new Circuito();
+        if (circuito.comprobarAPIFile()) {
+        inputFileHtml.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+            circuito.rellenaDOM(file);
+            }
+        });
+        }
+
+        const cargador = new CargadorSVG();
+        inputFileSVG.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            cargador.insertarSVG(file);
+        }
+        });
+
+        mapboxgl.accessToken = "";
+        const map = new mapboxgl.Map({
+        container: document.querySelector("div"),
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: [11.3714, 43.9976],
+        zoom: 13
+        });
+
+        boton.addEventListener("click", () => {
+        CargadorKML.insertarCapaKML(map);
+        });
+    </script>
+
 </main> 
 </body>
 </html>

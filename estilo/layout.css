@@ -5,6 +5,8 @@ header{ /*001*/
     justify-content: space-around;
     flex-shrink: 3;
     align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;  
 }
 header nav{ /*002*/
     display:flex;
@@ -17,11 +19,22 @@ Video { /*001*/
 audio{ /*001*/
     width:80%;
 }
-
+article h2 + img { /*003*/
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+body > div {/*002*/
+  width: 100%;
+  height: 31rem;
+  position: relative;
+}
 @media (min-width: 320px) and (max-width: 799px){
     header{ /*001*/
         display:flex;
         flex-direction:column;
+        align-items: center;
     }
     header nav{ /*002*/
         display:flex;
@@ -30,7 +43,15 @@ audio{ /*001*/
     main p:first-child{ /*012*/
         display: none;
     }
-}
-
-@media (min-width: 800px){
+    article h2 + img {/*003*/
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    body > div { /*002*/
+        width: 100%;
+        height: 50vh;
+        margin-top: 0;
+    }
 }

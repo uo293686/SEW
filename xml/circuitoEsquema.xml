@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<circuito xmlns="http://www.uniovi.es"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.uniovi.es circuito.xsd"
+>
+    <name>Autodromo Internazionale del Mugello</name>
+    <length unit="metros">5245</length>
+    <width unit="metros">11.9</width>
+    <date>2025-06-22</date>
+    <hour>2025-06-22T14:00:00</hour>
+    <laps>23</laps>
+    <location>Scarperia e San Piero, Florencia</location>
+    <country>Italia</country>
+    <sponsor>Brembo</sponsor>
+    <references>
+        <reference>https://www.motogp.com/es/calendar/2025/event/italy/ae539677-70a6-4642-aee4-6d6cc5979f67?tab=circuit-info</reference>
+        <reference>https://en.wikipedia.org/wiki/Mugello_Circuit</reference>
+        <reference>https://mugellocircuit.com/it/pista/descrizione-pista</reference>
+    </references>
+    <photos>
+        <photo>
+            <phototitle>Vista panorámica</phototitle>
+            <imgfilename>panorama.jpg</imgfilename>
+            <imgformat>image/jpeg</imgformat>
+            <imgurl>multimedia/panorama.jpg</imgurl>
+        </photo>
+        <photo>
+            <phototitle>Parrilla de salida</phototitle>
+            <imgfilename>parrilla_de_salida.jpg</imgfilename>
+            <imgformat>image/jpeg</imgformat>
+            <imgurl>multimedia/parrilla_de_salida.jpg</imgurl>
+        </photo>
+        <photo>
+            <phototitle>Secciones</phototitle>
+            <imgfilename>secciones.jpg</imgfilename>
+            <imgformat>image/jpeg</imgformat>
+            <imgurl>multimedia/secciones.jpg</imgurl>
+        </photo>
+    </photos>
+    <videos>
+        <video>
+            <videotitle>Recorrido del circuito</videotitle>
+            <filename>recorrido_circuito.mp4</filename>
+            <format>video/mp4</format>
+            <url>multimedia/recorrido_circuito.mp4</url>
+        </video>
+    </videos>
+    <coordinates>
+        <latitud>43.997611</latitud>
+        <longitud>11.371472</longitud>
+        <height unit="metros">292</height>
+    </coordinates>
+    <tramos>
+        <tramo>
+            <distance unit="metros">681</distance>
+            <endcoords>
+              <endlatitud>43.99758265447097</endlatitud>
+              <endlongitud>11.37149650090408</endlongitud>
+              <endheight unit="metros">256</endheight>
+            </endcoords>
+            <number>1</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">47</distance>
+            <endcoords>
+              <endlatitud>44.00311453966479</endlatitud>
+              <endlongitud>11.3751547154662</endlongitud>
+              <endheight unit="metros">268</endheight>
+            </endcoords>
+            <number>2</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">44</distance>
+            <endcoords>
+              <endlatitud>44.00326105947403</endlatitud>
+              <endlongitud>11.37570878970725</endlongitud>
+              <endheight unit="metros">268</endheight>
+            </endcoords>
+            <number>3</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">31</distance>
+            <endcoords>
+              <endlatitud>44.00305697102322</endlatitud>
+              <endlongitud>11.37618261429373</endlongitud>
+              <endheight unit="metros">269</endheight>
+            </endcoords>
+            <number>4</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">152</distance>
+            <endcoords>
+              <endlatitud>44.00279474050314</endlatitud>
+              <endlongitud>11.37631539345632</endlongitud>
+              <endheight unit="metros">272</endheight>
+            </endcoords>
+            <number>5</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">26</distance>
+            <endcoords>
+              <endlatitud>44.00144864422621</endlatitud>
+              <endlongitud>11.37602884708407</endlongitud>
+              <endheight unit="metros">280</endheight>
+            </endcoords>
+            <number>6</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">87</distance>
+            <endcoords>
+              <endlatitud>44.00123473420027</endlatitud>
+              <endlongitud>11.37615197789951</endlongitud>
+              <endheight unit="metros">280</endheight>
+            </endcoords>
+            <number>7</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">42</distance>
+            <endcoords>
+              <endlatitud>44.00082549002367</endlatitud>
+              <endlongitud>11.37707689242104</endlongitud>
+              <endheight unit="metros">282</endheight>
+            </endcoords>
+            <number>8</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">41</distance>
+            <endcoords>
+              <endlatitud>44.00048844529314</endlatitud>
+              <endlongitud>11.37731248647307</endlongitud>
+              <endheight unit="metros">284</endheight>
+            </endcoords>
+            <number>9</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">349</distance>
+            <endcoords>
+              <endlatitud>44.000123388194</endlatitud>
+              <endlongitud>11.37722021193938</endlongitud>
+              <endheight unit="metros">285</endheight>
+            </endcoords>
+            <number>10</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">41</distance>
+            <endcoords>
+              <endlatitud>43.99749618652729</endlatitud>
+              <endlongitud>11.37482289856738</endlongitud>
+              <endheight unit="metros">281</endheight>
+            </endcoords>
+            <number>11</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">55</distance>
+            <endcoords>
+              <endlatitud>43.99712714781948</endlatitud>
+              <endlongitud>11.37485361403651</endlongitud>
+              <endheight unit="metros">282</endheight>
+            </endcoords>
+            <number>12</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">43</distance>
+            <endcoords>
+              <endlatitud>43.99669646941431</endlatitud>
+              <endlongitud>11.37519343096652</endlongitud>
+              <endheight unit="metros">280</endheight>
+            </endcoords>
+            <number>13</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">313</distance>
+            <endcoords>
+              <endlatitud>43.99631721774779</endlatitud>
+              <endlongitud>11.3751050588706</endlongitud>
+              <endheight unit="metros">279</endheight>
+            </endcoords>
+            <number>14</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">120</distance>
+            <endcoords>
+              <endlatitud>43.99415608060823</endlatitud>
+              <endlongitud>11.37260975257893</endlongitud>
+              <endheight unit="metros">265</endheight>
+            </endcoords>
+            <number>15</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">58</distance>
+            <endcoords>
+              <endlatitud>43.99407349901766</endlatitud>
+              <endlongitud>11.37111310318959</endlongitud>
+              <endheight unit="metros">255</endheight>
+            </endcoords>
+            <number>16</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">55</distance>
+            <endcoords>
+              <endlatitud>43.99386907668737</endlatitud>
+              <endlongitud>11.37045052654332</endlongitud>
+              <endheight unit="metros">251</endheight>
+            </endcoords>
+            <number>17</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">157</distance>
+            <endcoords>
+              <endlatitud>43.99346607758238</endlatitud>
+              <endlongitud>11.37004587067652</endlongitud>
+              <endheight unit="metros">247</endheight>
+            </endcoords>
+            <number>18</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">61</distance>
+            <endcoords>
+              <endlatitud>43.99213143966437</endlatitud>
+              <endlongitud>11.36940018138305</endlongitud>
+              <endheight unit="metros">243</endheight>
+            </endcoords>
+            <number>19</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">74</distance>
+            <endcoords>
+              <endlatitud>43.9917141063755</endlatitud>
+              <endlongitud>11.36890583493548</endlongitud>
+              <endheight unit="metros">243</endheight>
+            </endcoords>
+            <number>20</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">184</distance>
+            <endcoords>
+              <endlatitud>43.99153005289496</endlatitud>
+              <endlongitud>11.36801983579136</endlongitud>
+              <endheight unit="metros">246</endheight>
+            </endcoords>
+            <number>21</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">59</distance>
+            <endcoords>
+              <endlatitud>43.99227024676193</endlatitud>
+              <endlongitud>11.36597013843274</endlongitud>
+              <endheight unit="metros">259</endheight>
+            </endcoords>
+            <number>22</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">305</distance>
+            <endcoords>
+              <endlatitud>43.99276921851885</endlatitud>
+              <endlongitud>11.3657439242495</endlongitud>
+              <endheight unit="metros">264</endheight>
+            </endcoords>
+            <number>23</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">37</distance>
+            <endcoords>
+              <endlatitud>43.99545561035495</endlatitud>
+              <endlongitud>11.36648723291673</endlongitud>
+              <endheight unit="metros">272</endheight>
+            </endcoords>
+            <number>24</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">82</distance>
+            <endcoords>
+              <endlatitud>43.9956584929308</endlatitud>
+              <endlongitud>11.36685109647855</endlongitud>
+              <endheight unit="metros">271</endheight>
+            </endcoords>
+            <number>25</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">42</distance>
+            <endcoords>
+              <endlatitud>43.99570913778936</endlatitud>
+              <endlongitud>11.36786904458812</endlongitud>
+              <endheight unit="metros">269</endheight>
+            </endcoords>
+            <number>26</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">365</distance>
+            <endcoords>
+              <endlatitud>43.99592302488187</endlatitud>
+              <endlongitud>11.36830294752644</endlongitud>
+              <endheight unit="metros">268</endheight>
+            </endcoords>
+            <number>27</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">56</distance>
+            <endcoords>
+              <endlatitud>43.99904951079815</endlatitud>
+              <endlongitud>11.36967960153846</endlongitud>
+              <endheight unit="metros">272</endheight>
+            </endcoords>
+            <number>28</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">49</distance>
+            <endcoords>
+              <endlatitud>43.99930139077022</endlatitud>
+              <endlongitud>11.37027813855379</endlongitud>
+              <endheight unit="metros">268</endheight>
+            </endcoords>
+            <number>29</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">53</distance>
+            <endcoords>
+              <endlatitud>43.99910145811435</endlatitud>
+              <endlongitud>11.37082532836821</endlongitud>
+              <endheight unit="metros">266</endheight>
+            </endcoords>
+            <number>30</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">46</distance>
+            <endcoords>
+              <endlatitud>43.99865068754556</endlatitud>
+              <endlongitud>11.37104019136353</endlongitud>
+              <endheight unit="metros">264</endheight>
+            </endcoords>
+            <number>31</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">133</distance>
+            <endcoords>
+              <endlatitud>43.99827282652089</endlatitud>
+              <endlongitud>11.37082247875905</endlongitud>
+              <endheight unit="metros">262</endheight>
+            </endcoords>
+            <number>32</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">90</distance>
+            <endcoords>
+              <endlatitud>43.99730299661141</endlatitud>
+              <endlongitud>11.36985635711082</endlongitud>
+              <endheight unit="metros">261</endheight>
+            </endcoords>
+            <number>33</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">443</distance>
+            <endcoords>
+              <endlatitud>43.99649191383857</endlatitud>
+              <endlongitud>11.36979353103736</endlongitud>
+              <endheight unit="metros">259</endheight>
+            </endcoords>
+            <number>34</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">165</distance>
+            <endcoords>
+              <endlatitud>43.99322463503049</endlatitud>
+              <endlongitud>11.36661582684002</endlongitud>
+              <endheight unit="metros">260</endheight>
+            </endcoords>
+            <number>35</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">139</distance>
+            <endcoords>
+              <endlatitud>43.99277777777778</endlatitud>
+              <endlongitud>11.36638888888889</endlongitud>
+              <endheight unit="metros">260</endheight>
+            </endcoords>
+            <number>36</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">81</distance>
+            <endcoords>
+              <endlatitud>43.99245152525784</endlatitud>
+              <endlongitud>11.36715396066201</endlongitud>
+              <endheight unit="metros">256</endheight>
+            </endcoords>
+            <number>37</number>
+          </tramo>
+          <tramo>
+            <distance unit="metros">616</distance>
+            <endcoords>
+              <endlatitud>43.99259366021041</endlatitud>
+              <endlongitud>11.36814619049562</endlongitud>
+              <endheight unit="metros">250</endheight>
+            </endcoords>
+            <number>38</number>
+        </tramo>     
+        <tramo>
+            <distance unit="metros">0</distance>
+            <endcoords>
+              <endlatitud>43.99758265447097</endlatitud>
+              <endlongitud>11.37149650090408</endlongitud>
+              <endheight unit="metros">256</endheight>
+            </endcoords>
+            <number>38</number>
+          </tramo>     
+    </tramos>
+    <winnerinfo>
+        <winner>Marc Marquez</winner>
+        <time>PT41M09S</time>
+    </winnerinfo>
+    <qualified>
+        <driver>Marc Marquez</driver>
+        <driver>Alex Marques</driver>
+        <driver>Francesco Bagnaia</driver>
+    </qualified>
+</circuito>

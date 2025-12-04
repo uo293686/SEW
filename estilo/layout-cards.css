@@ -1,0 +1,49 @@
+/* MotoGP-Desktop*/
+/* Hoja de estilo para el layout del juego de memoria con cartas */
+
+main { /*001*/
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    justify-content: center;
+}
+
+main h2 {/*002*/
+    grid-column: 1 / -1;
+    padding: 1rem 0; 
+    text-align: center;
+    margin: 0;
+}
+main p{/*002*/
+    grid-column: 1 / -1;
+    padding: 1rem 0; 
+    text-align: center;
+    margin: 0;
+}
+
+
+
+@media (min-width: 320px) and (max-width: 799px){
+    main { /*001*/
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto; 
+        align-items:start;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.5rem;
+        justify-content: center;
+    }
+
+    main h2 { /*002*/
+        grid-column: 1 / -1;
+        padding: 1rem 0; 
+        text-align: center;
+        margin: 0;
+    }
+
+}

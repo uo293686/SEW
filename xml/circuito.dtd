@@ -1,0 +1,59 @@
+<!ELEMENT circuito (name, length, width, date, hour, laps, location, country, sponsor, references, photos, videos, coordinates, tramos, winnerinfo, qualified)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT length (#PCDATA)>
+<!ELEMENT width (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT hour (#PCDATA)>
+<!ELEMENT laps (#PCDATA)>
+<!ELEMENT location (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT sponsor (#PCDATA)>
+
+<!ELEMENT references (reference+)>
+<!ELEMENT reference (#PCDATA)>
+
+<!ELEMENT photos (photo+)>
+<!ELEMENT photo (phototitle, imgfilename, imgformat, imgurl)>
+<!ELEMENT phototitle (#PCDATA)>
+<!ELEMENT imgfilename (#PCDATA)>
+<!ELEMENT imgformat (#PCDATA)>
+<!ELEMENT imgurl (#PCDATA)>
+
+<!ELEMENT videos (video+)>
+<!ELEMENT video (videotitle, filename, format, url)>
+<!ELEMENT videotitle (#PCDATA)>
+<!ELEMENT filename (#PCDATA)>
+<!ELEMENT format (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+
+<!ELEMENT coordinates (latitud, longitud, height)>
+<!ELEMENT latitud (#PCDATA)>
+<!ELEMENT longitud (#PCDATA)>
+<!ELEMENT height (#PCDATA)>
+
+<!ELEMENT tramos (tramo+)>
+<!ELEMENT tramo (distance, endcoords, number)>
+<!ELEMENT distance (#PCDATA)>
+<!ELEMENT endcoords (endlatitud, endlongitud, endheight)>
+<!ELEMENT endlatitud (#PCDATA)>
+<!ELEMENT endlongitud (#PCDATA)>
+<!ELEMENT endheight (#PCDATA)>
+<!ELEMENT number (#PCDATA)>
+
+<!ELEMENT winnerinfo (winner, time)>
+<!ELEMENT winner (#PCDATA)>
+<!ELEMENT time (#PCDATA)>
+
+<!ELEMENT qualified (driver+)>
+<!ELEMENT driver (#PCDATA)>
+
+<!ATTLIST length 
+    unit CDATA #REQUIRED>
+<!ATTLIST width 
+    unit CDATA #REQUIRED>
+<!ATTLIST height 
+    unit CDATA #REQUIRED>
+<!ATTLIST distance
+    unit CDATA #REQUIRED>
+<!ATTLIST endheight
+    unit CDATA #REQUIRED>

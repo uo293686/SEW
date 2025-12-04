@@ -12,23 +12,33 @@
 	<link rel="stylesheet" type="text/css" href = "estilo/estilo.css"/>
     <link rel="stylesheet" type="text/css" href = "estilo/layout.css"/>
     <link rel="icon" href="multimedia/icon.ico"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+    <script src="js/carrusel.js"></script>
+    <script src="js/noticias.js"></script>
 </head>
 <body>
-<header>
-    <!-- Datos con el contenidos que aparece en el navegador -->
-    <h1>MotoGP Desktop</h1>
-    <nav>
-        <a href = "index.html" class = "active">Inicio</a>
-        <a href = "piloto.html">Piloto</a>
-        <a href = "circuito.html">Circuito</a>
-        <a href = "meteorologia.html">Meteorología</a>
-        <a href = "clasificaciones.html">Clasificaciones</a>
-        <a href = "juegos.html">Juegos</a>
-        <a href = "ayuda.html">Ayuda</a>
-    </nav>
-</header>
-<main>
-    <p>En desarrollo</p>
-</main>
+    <header>
+        <!-- Datos con el contenidos que aparece en el navegador -->
+        <h1>MotoGP Desktop</h1>
+        <nav>
+            <a href = "index.html" class = "active">Inicio</a>
+            <a href = "piloto.html">Piloto</a>
+            <a href = "circuito.html">Circuito</a>
+            <a href = "meteorologia.html">Meteorología</a>
+            <a href = "clasificaciones.php">Clasificaciones</a>
+            <a href = "juegos.html">Juegos</a>
+            <a href = "ayuda.html">Ayuda</a>
+        </nav>
+    </header>
+    <main>
+        <script>
+            const carrusel = new Carrusel("Autodromo Internazionale del Mugello");
+            const noticias = new Noticias("MotoGp");
+            carrusel.mostrarFotografias();
+            noticias.mostrarNoticias();
+        </script>
+    </main>
 </body>
 </html>

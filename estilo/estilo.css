@@ -3,7 +3,7 @@
 
 body{   /*001*/
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; 
-    font-size: 1.2rem; 
+    font-size: 1rem; 
     background-color: #dff5ff;
     color:black;
 }
@@ -13,7 +13,6 @@ body header{ /*002*/
 }
 h1{ /*001*/
     font-size: 3rem;
-    
 }
 h1 a{/*002*/
     /*Hereda font-size de h1{}*/
@@ -33,6 +32,7 @@ nav a.active{ /*012*/
     /* hereda background-color:#001c77 de body header{} */
 }
 
-main p:first-child{ /*012*/
+header + p { /*002*/
     font-size: 0.8rem;
 }
+
