@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name = "author" content = "Sergio Blanco García"/>
     <meta name = "descripción"  content = "Información acerca de las clasificaciones de MotoGP-Desktop"/>
-    <meta name = "keywords" content = "aquí cada documento debe tener la lista de palabras clave del mismo separada por comas"/>
+    <meta name = "keywords" content = "clasificación, clasificaciones"/>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0"/>
     <title>MotoGP-Clasificaciones</title>
 	<link rel="stylesheet" type="text/css" href = "estilo/estilo.css"/>

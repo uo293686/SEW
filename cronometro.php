@@ -5,7 +5,7 @@
         <!-- Datos que describen el documento -->
         <meta charset="UTF-8" />
         <meta name = "author" content = "Sergio Blanco García"/>
-        <meta name = "descripción"  content = "Página de juegos de MotoGP-Desktop"/>
+        <meta name = "descripción"  content = "Cronómetro en php de MotoGP-Desktop"/>
         <meta name = "keywords" content = "cronometro"/>
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0"/>
         <title>MotoGP-Juegos Cronometro PHP</title>
@@ -36,7 +36,6 @@
                 <input type="submit" name="accion" value="Mostrar" />
             </form>
 
-            <section>
                 <?php
                 require_once 'Cronometro.php';
                 session_start();
@@ -61,7 +60,6 @@
                     }
                 }
                 ?>
-            </section>
         </main>
     </body>
 </html>

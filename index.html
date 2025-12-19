@@ -5,8 +5,8 @@
     <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <meta name = "author" content = "Sergio Blanco García"/>
-    <meta name = "descripción"  content = "aquí cada documento debe tener la descripción del contenido concreto del mismo"/>
-    <meta name = "keywords" content = "aquí cada documento debe tener la lista de palabras clave del mismo separada por comas"/>
+    <meta name = "descripción"  content = "Página principal de motogpDesktop"/>
+    <meta name = "keywords" content = "home, índice, index"/>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0"/>
     <title>MotoGP</title>
 	<link rel="stylesheet" type="text/css" href = "estilo/estilo.css"/>
@@ -37,7 +37,9 @@
             const carrusel = new Carrusel("Autodromo Internazionale del Mugello");
             const noticias = new Noticias("MotoGp");
             carrusel.mostrarFotografias();
-            noticias.mostrarNoticias();
+            setTimeout(() => {
+                noticias.mostrarNoticias();
+            }, 0);
         </script>
     </main>
 </body>

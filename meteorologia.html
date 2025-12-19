@@ -54,8 +54,11 @@
             </script>
         </section>
             <script>       
-                ciudad.mostrarDatosCarrera();         
-                ciudad.mostrarDatosEntrenos();
+                setTimeout(() => {
+                    ciudad.mostrarDatosCarrera();  }, 0);       
+                setTimeout(() => {
+                    ciudad.mostrarDatosEntrenos();
+                }, 10);
             </script>
     </main>
 </body>
