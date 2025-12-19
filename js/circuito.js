@@ -1,11 +1,7 @@
 class Circuito {
   comprobarAPIFile() {
-    const main = document.querySelector("main");
-    const mensaje = document.createElement("p");
-  
     if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
-      mensaje.textContent = "Este navegador no soporta la API File";
-      main.appendChild(mensaje);
+      $("main").append("<p>Este navegador no soporta la API File</p>");
       return false;
     }
     return true;
@@ -29,8 +25,7 @@ class Circuito {
     this.leerArchivoHTML(file, (error, contenido) => {
       if (error) {
         console.error("Error al insertar el main:", error);
-        document.querySelector("main").innerHTML +=
-          `<p>Error al insertar el main: ${error.message}</p>`;
+        $("main").append(`<p>Error al insertar el main: ${error.message}</p>`);
         return;
       }
   
@@ -39,16 +34,15 @@ class Circuito {
   
       const mainExterno = doc.querySelector("main");
       if (!mainExterno) {
-        document.querySelector("main").innerHTML +=
-          "<p>El archivo no contiene un &lt;main&gt; válido.</p>";
+        $("main").append("<p>El archivo no contiene un &lt;main&gt; válido.</p>");
         return;
       }
   
-      const mainActual = document.querySelector("main");
-      mainActual.innerHTML += mainExterno.innerHTML;
+      $("main").append(mainExterno.innerHTML);
     });
   }
 } 
+
 class CargadorSVG {
   leerArchivoSVG(file, callback) {
     if (!(file instanceof File)) {
@@ -64,7 +58,7 @@ class CargadorSVG {
     const lector = new FileReader();
 
     lector.onload = (evento) => {
-        callback(null, evento.target.result); // devolvemos el contenido
+        callback(null, evento.target.result);
     };
 
     lector.onerror = () => {
@@ -81,101 +75,67 @@ class CargadorSVG {
               return;
           }
 
-          const destino = document.querySelector("main");
-          if (destino) {
-              destino.innerHTML += contenido;
-          } else {
-              console.error(`No se encontró el elemento destino: ${selectorDestino}`);
-          }
+          $("main").append(contenido);
       });
   }
 }
 
 class CargadorKML {
-  static insertarCapaKML(map) {
-    const fileInput = document.getElementById("inputKML");
-    const file = fileInput.files[0];
-    if (!file) {
-      console.error("No se seleccionó ningún archivo.");
-      return;
+  static mapa;
+
+    constructor(mapa) {
+        this.mapa = mapa;
     }
 
-    const lector = new FileReader();
-    lector.onload = (e) => {
-      const contenido = e.target.result;
-      const xml = $.parseXML(contenido);
-      const $xml = $(xml);
+    leerArchivoKML(archivo) {
+        if (!archivo) return;
 
-      const lat = parseFloat($xml.find("coordinates > latitud").text());
-      const lng = parseFloat($xml.find("coordinates > longitud").text());
-      const origen = [lng, lat];
+        const lector = new FileReader();
 
-      const tramos = [];
-      $xml.find("tramo").each((i, tramo) => {
-        const endLat = parseFloat($(tramo).find("endlatitud").text());
-        const endLng = parseFloat($(tramo).find("endlongitud").text());
-        tramos.push([endLng, endLat]);
-      });
+        lector.onload = (evento) => {
+            const xml = new DOMParser().parseFromString(evento.target.result, "application/xml");
+            const coords = xml.querySelector("LineString coordinates")?.textContent;
+            
+            if (!coords) return;
+            
+            const puntos = coords
+                .trim()
+                .split(/\s+/)
+                .map(linea => linea.split(",").map(Number))
+                .filter(p => p.length >= 2);
+            
+            if (puntos.length > 1) this.insertarCapaKML(puntos);
+        };
 
-      const geojson = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            geometry: {
-              type: "LineString",
-              coordinates: [origen, ...tramos]
-            },
-            properties: {}
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: origen
-            },
-            properties: { title: "Origen del circuito" }
-          }
-        ]
-      };
+        lector.readAsText(archivo);
+    }
 
-      if (map.getSource("circuito")) {
-        map.removeLayer("circuito-line");
-        map.removeLayer("circuito-origen");
-        map.removeSource("circuito");
-      }
+    insertarCapaKML(puntos) {
+        new mapboxgl.Marker()
+            .setLngLat(puntos[0])
+            .addTo(this.mapa);
 
-      map.addSource("circuito", { type: "geojson", data: geojson });
+        this.mapa.addSource("circuito", {
+            type: "geojson",
+            data: {
+                type: "Feature",
+                geometry: {
+                    type: "LineString",
+                    coordinates: puntos
+                }
+            }
+        });
 
-      map.addLayer({
-        id: "circuito-line",
-        type: "line",
-        source: "circuito",
-        paint: {
-          "line-color": "#ff0000",
-          "line-width": 3
-        },
-        filter: ["==", "$type", "LineString"]
-      });
+        this.mapa.addLayer({
+            id: "coordinates",
+            type: "line",
+            source: "circuito",
+            paint: {
+                "line-color": "#ff0000",
+                "line-width": 3
+            }
+            });
 
-      map.addLayer({
-        id: "circuito-origen",
-        type: "circle",
-        source: "circuito",
-        paint: {
-          "circle-radius": 6,
-          "circle-color": "#0000ff"
-        },
-        filter: ["==", "$type", "Point"]
-      });
-
-      const bounds = geojson.features[0].geometry.coordinates.reduce((b, coord) => {
-        return b.extend(coord);
-      }, new mapboxgl.LngLatBounds(origen, origen));
-
-      map.fitBounds(bounds, { padding: 50 });
-    };
-
-    lector.readAsText(file);
-  }
+            this.mapa.setCenter(puntos[0]);
+    }
 }

@@ -3,7 +3,6 @@
 header{ /*001*/
     display:flex;
     justify-content: space-around;
-    flex-shrink: 3;
     align-items: center;
     padding-left: 2rem;
     padding-right: 2rem;  
@@ -12,7 +11,7 @@ header nav{ /*002*/
     display:flex;
     gap:2rem;
 }
-Video { /*001*/
+video { /*001*/
     width:80%;
     height:auto;
 }
@@ -25,22 +24,28 @@ article h2 + img { /*003*/
     display: block;
     margin: 0 auto;
 }
-body > div {/*002*/
-  width: 100%;
-  height: 31rem;
-  position: relative;
+
+main > div:last-of-type {/*012*/
+    width: 60%;
+    height: 50vh;
+    margin-bottom: 2rem
 }
+
 @media (min-width: 320px) and (max-width: 799px){
+    /*Redefiniciones para dispositivos móviles*/
     header{ /*001*/
         display:flex;
         flex-direction:column;
         align-items: center;
+        padding-left: 2rem;
+        padding-right: 2rem; 
+        padding-bottom: 2rem;
     }
     header nav{ /*002*/
         display:flex;
         flex-direction:column;
     }
-    main p:first-child{ /*012*/
+    header + p{ /*002*/
         display: none;
     }
     article h2 + img {/*003*/
@@ -49,9 +54,10 @@ body > div {/*002*/
         display: block;
         margin: 0 auto;
     }
-    body > div { /*002*/
+   
+    main > div:last-of-type {/*012*/
         width: 100%;
         height: 50vh;
-        margin-top: 0;
+        margin-bottom: 2rem
     }
 }
