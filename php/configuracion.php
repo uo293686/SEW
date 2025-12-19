@@ -12,11 +12,19 @@ class Configuracion {
         if ($this->conn->connect_error) {
             die("Error de conexión: " . $this->conn->connect_error);
         }
-        $this->conn->select_db($this->db);
+    }
+
+    private function baseDatosExiste() {
+        $result = $this->conn->query("SHOW DATABASES LIKE '" . $this->db . "'");
+        return $result && $result->num_rows > 0;
     }
 
     public function reiniciarBD() {
-        $tablas = ["Resultados_Test", "Observaciones_Facilitador", "Usuarios", "Dispositivos"];
+        if (!$this->conn->select_db($this->db)) {
+            die("Error: La base de datos no existe. Primero debes inicializarla.");
+        }
+        
+        $tablas = ["Resultados_Test", "Observaciones_Facilitador", "Usuarios"];
         foreach ($tablas as $tabla) {
             $this->conn->query("DELETE FROM $tabla");
         }
@@ -30,12 +38,26 @@ class Configuracion {
     }
 
     public function inicializarBD() {
-        $this->conn->query("DROP DATABASE IF EXISTS " . $this->db);
+        if ($this->baseDatosExiste()) {
+            return false;
+        }
+        
+        $sql = "CREATE DATABASE " . $this->db . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
+        if (!$this->conn->query($sql)) {
+            die("Error al crear la BD: " . $this->conn->error);
+        }
+        
+        $this->conn->select_db($this->db);
+        
         $rutaSQL = __DIR__ . "/UO293686_DB.sql";
         $sql = file_get_contents($rutaSQL);
         if ($sql === false) {
             die("No se pudo leer el archivo SQL.");
         }
+        
+        $sql = preg_replace('/CREATE DATABASE UO293686_DB;?\s*/i', '', $sql);
+        $sql = preg_replace('/USE UO293686_DB;?\s*/i', '', $sql);
+        
         if ($this->conn->multi_query($sql)) {
             while ($this->conn->more_results()) {
                 $this->conn->next_result();
@@ -43,24 +65,88 @@ class Configuracion {
         } else {
             die("Error al ejecutar el script SQL: " . $this->conn->error);
         }
+        
+        return true;
     }
 
-
-    public function exportarCSV($tabla, $rutaArchivo) {
-        $resultado = $this->conn->query("SELECT * FROM $tabla");
+    public function exportarCSV($rutaArchivo) {
+        if (!$this->conn->select_db($this->db)) {
+            die("Error: La base de datos no existe. Primero debes inicializarla.");
+        }
+        
+        $sql = "SELECT 
+                    u.usuario_id,
+                    u.profesion,
+                    u.edad,
+                    u.genero,
+                    u.pericia_informatica,
+                    rt.dispositivo,
+                    rt.tiempo_segundos,
+                    rt.valoracion,
+                    rt.propuestas_mejora,
+                    of.comentarios as comentario
+                FROM Usuarios u
+                LEFT JOIN Resultados_Test rt ON u.usuario_id = rt.usuario_id
+                LEFT JOIN Observaciones_Facilitador of ON u.usuario_id = of.usuario_id
+                ORDER BY u.usuario_id";
+        
+        $resultado = $this->conn->query($sql);
         if ($resultado) {
             if($resultado->num_rows > 0){
                 $fp = fopen($rutaArchivo, 'w');
-                $cabeceras = array_keys($resultado->fetch_assoc());
+                
+                $cabeceras = [
+                    'usuario_id', 
+                    'profesion', 
+                    'edad', 
+                    'genero', 
+                    'pericia_informatica', 
+                    'dispositivo', 
+                    'tiempo_segundos', 
+                    'valoracion', 
+                    'propuestas_mejora', 
+                    'comentario'
+                ];
                 fputcsv($fp, $cabeceras);
-                $resultado->data_seek(0);
+                
                 while ($fila = $resultado->fetch_assoc()) {
-                    fputcsv($fp, $fila);
+                    $filaOrdenada = [
+                        'usuario_id' => $fila['usuario_id'] ?? '',
+                        'profesion' => $fila['profesion'] ?? '',
+                        'edad' => $fila['edad'] ?? '',
+                        'genero' => $fila['genero'] ?? '',
+                        'pericia_informatica' => $fila['pericia_informatica'] ?? '',
+                        'dispositivo' => $fila['dispositivo'] ?? '',
+                        'tiempo_segundos' => $fila['tiempo_segundos'] ?? '',
+                        'valoracion' => $fila['valoracion'] ?? '',
+                        'propuestas_mejora' => $fila['propuestas_mejora'] ?? '',
+                        'comentario' => $fila['comentario'] ?? ''
+                    ];
+                    fputcsv($fp, $filaOrdenada);
                 }
                 fclose($fp);
+                
+                return [
+                    'exito' => true,
+                    'registros' => $resultado->num_rows,
+                    'archivo' => $rutaArchivo
+                ];
             }
             else{
-                die("La tabla '$tabla' no tiene datos que exportar.");
+                $fp = fopen($rutaArchivo, 'w');
+                $cabeceras = [
+                    'usuario_id', 'profesion', 'edad', 'genero', 'pericia_informatica', 
+                    'dispositivo', 'tiempo_segundos', 'valoracion', 'propuestas_mejora', 'comentario'
+                ];
+                fputcsv($fp, $cabeceras);
+                fclose($fp);
+                
+                return [
+                    'exito' => true,
+                    'registros' => 0,
+                    'archivo' => $rutaArchivo,
+                    'mensaje' => 'Archivo creado solo con cabeceras (sin datos)'
+                ];
             }
         } else {
             die("Error al exportar datos: " . $this->conn->error);
@@ -70,6 +156,7 @@ class Configuracion {
 
 $config = new Configuracion();
 $mensaje = "";
+$exportResultado = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
     switch ($_POST['accion']) {
@@ -82,12 +169,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
             $mensaje = "Base de datos eliminada.";
             break;
         case 'Inicializar':
-            $config->inicializarBD();
-            $mensaje = "Base de datos inicializada desde script.";
+            $resultadoInicializar = $config->inicializarBD();
+            if ($resultadoInicializar === false) {
+                $mensaje = "La base de datos ya existe. No se realizó ninguna acción.";
+            } else {
+                $mensaje = "Base de datos inicializada desde script.";
+            }
             break;
         case 'Exportar':
-            $config->exportarCSV("Usuarios", __DIR__ . "/usuarios.csv");
-            $mensaje = "Datos exportados a usuarios.csv.";
+            $rutaArchivo = __DIR__ . "usuarios" . ".csv";
+            $exportResultado = $config->exportarCSV($rutaArchivo);
+            if ($exportResultado['exito']) {
+                $nombreArchivo = basename($rutaArchivo);
+                $mensaje = "Datos exportados a <a href='$nombreArchivo' download>$nombreArchivo</a> (" . $exportResultado['registros'] . " registros).";
+            }
             break;
     }
 }
@@ -107,8 +202,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
         <button type="submit" name="accion" value="Reiniciar">Reiniciar BD</button>
         <button type="submit" name="accion" value="Eliminar">Eliminar BD</button>
         <button type="submit" name="accion" value="Inicializar">Inicializar BD desde script</button>
-        <button type="submit" name="accion" value="Exportar">Exportar Usuarios a CSV</button>
+        <button type="submit" name="accion" value="Exportar">Exportar Datos Completos a CSV</button>
     </form>
     <p><?php echo $mensaje; ?></p>
+    
+    <?php if ($exportResultado !== null && $exportResultado['exito']): ?>
+        <p><strong>Archivo generado:</strong> <?php echo basename($exportResultado['archivo']); ?></p>
+        <p><strong>Registros exportados:</strong> <?php echo $exportResultado['registros']; ?></p>
+        <?php if (isset($exportResultado['mensaje'])): ?>
+            <p><em><?php echo $exportResultado['mensaje']; ?></em></p>
+        <?php endif; ?>
+    <?php endif; ?>
 </body>
 </html>

@@ -104,7 +104,7 @@ def main(x, y):
         rlist = '<ul>'
         for r in refs:
             url = (r.text or '').strip()
-            rlist += f'  <li><a href="{(url)}"></a></li>'
+            rlist += f'  <li><a href="{(url)}">{(url)}</a></li>'
         rlist += '</ul>'
         html.add(f'''
           <section>
