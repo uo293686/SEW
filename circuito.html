@@ -36,63 +36,69 @@
 </header>
 <p>Estás en: <a href="index.html">MotoGP Desktop</a> >> <strong>Circuito</strong></p>
 <main>
-
-    <h2>Circuito de MotoGP-Desktop</h2>
-    <h3>Info del circuito</h3>
-    <input type="file" accept=".html">
-
     
-    <h3>Altimetría del circuito:</h3>
-    <input type="file" accept=".svg"/>
-    <section></section>
+    <h2>Circuito de MotoGP-Desktop: Autodromo Internazionale del Mugello</h2>
 
-    <h3>Mapa dinámico del circuito</h3>
-    <input type="file" accept=".xml,.kml">
-    <button>Insertar circuito en mapa</button>
+    <h3>Introduzca los datos del circuito:</h3>
+    <label>
+    Archivo HTML del circuito:
+    <input type="file" accept=".html">
+    </label>
+    <button>Cargar HTML</button>
+
+    <h3>Introduzca altimetría:</h3>
+    <label>
+    Archivo svg de altimetría:
+    <input type="file" accept=".svg">
+    </label>
+    <button>Cargar SVG</button>
+
+
+    <h3>Introduzca kml:</h3>
+    <label>
+    Archivo kml del mapa del circuito:
+    <input type="file" accept=".kml">
+    </label>
+    <button>Cargar KML</button>
+    
     <div></div>
-
-
-
     <script>
-        const inputs = document.querySelectorAll("input[type='file']");
-        const inputFileHtml = inputs[0];
-        const inputFileSVG = inputs[1];
-        const inputFileKML = inputs[2];
+        mapboxgl.accessToken = 'pk.eyJ1IjoidW8yOTM2ODYiLCJhIjoiY21pdWptdzVnMDBlYjNmczczdnVzb2N3NCJ9.Lb_ViQNxiTIX63b4HdcSzg';
+        const contenedorMapa = document.querySelector("main > div:last-of-type");
 
-        const contenedor = document.querySelector("section");
-        const boton = document.querySelector("button");
-
-        const circuito = new Circuito();
-        if (circuito.comprobarAPIFile()) {
-        inputFileHtml.addEventListener("change", (e) => {
-            const file = e.target.files[0];
-            if (file) {
-            circuito.rellenaDOM(file);
-            }
+        const mapa = new mapboxgl.Map({
+            container: contenedorMapa,
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [11.3714, 43.9976], 
+            zoom: 12
         });
-        }
-
-        const cargador = new CargadorSVG();
-        inputFileSVG.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            cargador.insertarSVG(file);
-        }
+        mapa.on('load', () => {
+            mapa.resize();
         });
+        const cargadorKML = new CargadorKML(mapa);
 
-        mapboxgl.accessToken = "";
-        const map = new mapboxgl.Map({
-        container: document.querySelector("div"),
-        style: "mapbox://styles/mapbox/streets-v12",
-        center: [11.3714, 43.9976],
-        zoom: 13
-        });
-
-        boton.addEventListener("click", () => {
-        CargadorKML.insertarCapaKML(map);
+        $("input[accept='.kml']").next("button").click(function () {
+            const file = $("input[accept='.kml']")[0].files[0];
+            if (file) cargadorKML.leerArchivoKML(file);
         });
     </script>
 
+    <script>
+    $(document).ready(function() {
+        const circuito = new Circuito();
+        const cargadorSVG = new CargadorSVG();
+        
+        $("input[accept='.html']").next("button").click(function() {
+            const file = $("input[accept='.html']")[0].files[0];
+            if (file) circuito.rellenaDOM(file);
+        });
+        
+        $("input[accept='.svg']").next("button").click(function() {
+            const file = $("input[accept='.svg']")[0].files[0];
+            if (file) cargadorSVG.insertarSVG(file);
+        });
+    });
+    </script>
 </main> 
 </body>
 </html>
